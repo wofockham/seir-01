@@ -26,7 +26,13 @@ console.log(`The greater number of 10 and 5 is ${ greaterNum(10, 5) }`);
 // - Call that function for each of the supported languages and log the result to make sure it works.
 
 const helloWorld = function (code) {
-  return 'Hello World';
+  if ('es' === code) {
+    return 'Hola mundo';
+  } else if ('de' === code) {
+    return 'Hallo Welt';
+  } else {
+    return 'Hello World';
+  }
 };
 
 console.log( helloWorld('es') ); // Spanish
@@ -41,7 +47,24 @@ console.log( helloWorld('ko') ); // Korean
 // - returns a grade for the score, either "A", "B", "C", "D", or "F".
 // - Call that function for a few different scores and log the result to make sure it works.
 
+const assignGrade = function (score) {
+  if (score >= 80) {
+     return 'A';
+  } else if (score >= 70) {
+     return 'B';
+  } else if (score >= 60) {
+     return 'C';
+  } else if (score >= 50) {
+     return 'D';
+  } else {
+     return 'F'
+  }
+};
 
+console.log( assignGrade(100) );
+console.log( assignGrade(70) );
+console.log( assignGrade(50) );
+console.log( assignGrade(14) );
 
 // ## The Pluralizer
 //
@@ -50,3 +73,29 @@ console.log( helloWorld('ko') ); // Korean
 // - returns the number and pluralized form, like "5 cats" or "1 dog".
 // - Call that function for a few different scores and log the result to make sure it works.
 // - Bonus: Make it handle a few collective nouns like "sheep" and "geese".
+
+const pluralize = function (noun, number) {
+  const message = `${ number } ${ noun }`;
+  if (1 === number) {
+    return message;
+  } else {
+    return message + 's';
+  }
+};
+
+console.log( pluralize('cat', 5) );
+console.log( pluralize('dog', 0) );
+console.log( pluralize('turtle', 1) );
+
+// How to do loops with just if statements and functions?
+// YOU DON'T NEED TO KNOW THIS YET
+// Recursion
+
+const countdown = function (number) {
+  if (number < 0) {
+    return;
+  } else {
+    console.log( number );
+    countdown( number-1 );
+  }
+};

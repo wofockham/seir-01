@@ -1,0 +1,58 @@
+/* * { border: 1px solid green; } */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+body {
+  background-color: #222; /* #222222: #rgb => #rrggbb */
+  padding: 0;
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.container {
+  max-width: 960px; /* Lazy responsive container */
+  background-color: #ccc;
+  margin: auto; /* Horizontal centering */
+  padding: 1em;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+nav {
+  text-align: right;
+}
+
+nav a {
+  color: green;
+}
+
+h1 {
+  text-align: center;
+  background-color: #222;
+  color: #ccc;
+  padding: 1em;
+}
+
+main {
+  display: inline-block;
+  width: 75%;
+}
+
+main img {
+  margin: auto;
+  display: block;
+}
+
+aside {
+  display: inline-block;
+  width: 21%; /* IN CSS: 21% + 75% == 100% */
+  vertical-align: top;
+  background-color: #cfc;
+  padding: 1em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 15px black; /* now it pops */
+}
+
+aside ul {
+  padding-left: 17px;
+}

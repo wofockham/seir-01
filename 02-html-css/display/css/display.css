@@ -1,0 +1,49 @@
+body {
+  background-color: limegreen;
+}
+
+.box {
+  background-color: white;
+  width: 300px;
+  height: 300px;
+  border: 1px solid black; /* variadic */
+  text-align: center;
+  /* Cheap nasty way to vertically center text */
+  line-height: 300px;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.none {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+/* Parent child selector */
+.spooky span {
+  visibility: hidden;
+}
+
+/* Pseudoselector */
+.spooky:hover {
+  background-color: black;
+}
+
+.spooky:hover span {
+  transition: 2s all;
+  color: yellow;
+  visibility: visible;
+}

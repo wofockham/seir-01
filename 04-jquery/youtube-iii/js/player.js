@@ -20,3 +20,6 @@ const $links = $('a'); // Hungarian notation for a jQuery object
 for (let i = 0; i < $links.length; i++) {
   thumbnailify( $($links[i]) );
 }
+
+$('h2').funText(100, 'reverseRainbow');
+$('a').funText(50, 'reverseRainbow');

@@ -22,7 +22,7 @@ end
 post '/butterflies' do
   query = "INSERT INTO butterflies (name, family, image) VALUES ('#{ params[:name] }', '#{ params[:family] }', '#{ params[:image] }')"
   query_db query
-  redirect to('/butterflies')
+  redirect to('/butterflies') # GET
 end
 
 # SHOW -- Shows a single butterfly: READ
@@ -30,6 +30,20 @@ get '/butterflies/:id' do
   @butterfly = query_db "SELECT * FROM butterflies WHERE id=#{ params[:id] }" # Returns an array
   @butterfly = @butterfly.first # Extract the butterfly from the array
   erb :butterflies_show
+end
+
+# EDIT -- Shows the form to edit a single butterfly: READ
+get '/butterflies/:id/edit' do
+  @butterfly = query_db "SELECT * FROM butterflies WHERE id=#{ params[:id] }" # Returns an array
+  @butterfly = @butterfly.first # Extract the butterfly from the array
+  erb :butterflies_edit
+end
+
+# UPDATE -- Update the database with new information for an existing butterfly
+post '/butterflies/:id' do
+  query = "UPDATE butterflies SET name='#{ params[:name] }', family='#{ params[:family] }', image='#{ params[:image] }' WHERE id=#{ params[:id] }"
+  query_db query
+  redirect to("/butterflies/#{ params[:id] }") # GET
 end
 
 def query_db(sql_statement)

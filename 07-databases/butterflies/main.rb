@@ -46,6 +46,12 @@ post '/butterflies/:id' do
   redirect to("/butterflies/#{ params[:id] }") # GET
 end
 
+# DELETE -- Delete a single butterfly from the database
+get '/butterflies/:id/delete' do
+  query_db "DELETE FROM butterflies WHERE id=#{ params[:id] }"
+  redirect to('/butterflies')
+end
+
 def query_db(sql_statement)
   puts sql_statement # Optional but it's nice for debugging
   db = SQLite3::Database.new 'database.sqlite3'

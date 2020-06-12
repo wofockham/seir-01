@@ -18,3 +18,7 @@ nav a {
 label {
   display: block;
 }
+
+.feature {
+  max-width: 100%;
+}

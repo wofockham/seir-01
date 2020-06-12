@@ -1,0 +1,20 @@
+body {
+  background-color: lavender;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+nav {
+  text-align: right;
+}
+
+nav a {
+  color: white;
+}
+
+label {
+  display: block;
+}

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/hello' => 'pages#hello'
   get '/about' => 'pages#about'
   get '/faq' => 'pages#faq'
+  get '/funny' => 'pages#funny'
 
   # /auto/purple => params[:color]
   get '/auto/:color' => 'auto#color'

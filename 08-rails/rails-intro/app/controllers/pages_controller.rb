@@ -10,4 +10,8 @@ class PagesController < ApplicationController
   def faq
     render :faq # app/views/pages/faq.html.erb
   end
+
+  def funny
+    render :funny
+  end
 end

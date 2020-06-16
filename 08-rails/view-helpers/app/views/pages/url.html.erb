@@ -1,0 +1,12 @@
+<h2>URL Helpers</h2>
+
+<h3>Hard coding URLs is a bad idea &mdash; URLs can change</h3>
+
+<!-- worst manually hard coded URL -->
+<a href="/numbers">Number helpers</a>
+
+<!-- better: numbers_path -->
+<a href="<%= numbers_path %>">Number helpers</a>
+
+<!-- best: link_to helper -->
+<%= link_to "Number helpers", numbers_path %>

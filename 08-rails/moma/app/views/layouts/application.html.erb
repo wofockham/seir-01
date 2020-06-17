@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to 'All Artists', artists_path %>
+      <%= link_to 'New Artist', new_artist_path %>
+    </nav>
     <%= yield %>
   </body>
 </html>

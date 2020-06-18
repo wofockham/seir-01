@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to 'Home', root_path %>
+      <%= link_to 'Sign up', new_user_path %>
+      <%= link_to 'Sign in', login_path %>
+      <% if @current_user.present? %>
+        <%= link_to 'Log out', login_path, :method => 'delete' %>
+        You are logged in as <%= @current_user.email %>
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>

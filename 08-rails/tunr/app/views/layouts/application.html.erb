@@ -7,23 +7,26 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
 
   <body>
-    <nav>
-      <%= link_to 'Home', root_path %>
+    <div class="container">
+      <nav>
+        <%= link_to 'Home', root_path %>
 
-      <% if @current_user.present? %>
-        <% if @current_user.admin? %>
-          <%= link_to 'All users', users_path %>
+        <% if @current_user.present? %>
+          <% if @current_user.admin? %>
+            <%= link_to 'All users', users_path %>
+          <% end %>
+          <%= link_to "Log out #{ @current_user.email }", login_path, :method => 'delete' %>
+        <% else %>
+          <%= link_to 'Sign up', new_user_path %>
+          <%= link_to 'Sign in', login_path %>
         <% end %>
-        <%= link_to "Log out #{ @current_user.email }", login_path, :method => 'delete' %>
-      <% else %>
-        <%= link_to 'Sign up', new_user_path %>
-        <%= link_to 'Sign in', login_path %>
-      <% end %>
 
-    </nav>
-    <%= yield %>
+      </nav>
+      <%= yield %>
+    </div>
   </body>
 </html>

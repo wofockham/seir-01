@@ -1,6 +1,8 @@
-const button = document.getElementById('lib-button');
+const form = document.querySelector('form');
 
-const makeMadLib = function () {
+const makeMadLib = function (event) {
+  event.preventDefault();
+
   const noun = document.getElementById('noun').value;
   const adjective = document.getElementById('adjective').value;
   const person = document.getElementById('person').value;
@@ -10,4 +12,4 @@ const makeMadLib = function () {
   document.getElementById('story').innerText = story;
 };
 
-button.addEventListener('click', makeMadLib);
+form.addEventListener('submit', makeMadLib);

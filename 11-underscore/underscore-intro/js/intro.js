@@ -37,3 +37,72 @@ _(groucho).each(function (v, k) {
 });
 
 // .map() //////////////////////////////////////////////////////////////////////
+// map() lets you create new arrays from old arrays.
+console.log( nums );
+
+const byFive = function (n) {
+  return n * 5;
+};
+
+const multiplesOfFive = _(nums).map(byFive);
+console.log( multiplesOfFive );
+
+// Objects:
+const grouchoFacts = _(groucho).map(function (v, k) {
+  return `${ k } is ${ v }.`;
+});
+console.log( grouchoFacts );
+
+// .reduce() ///////////////////////////////////////////////////////////////////
+const sum = _(nums).reduce(function (runningTotal, n) {
+  console.log(`runningTotal: ${ runningTotal }, n: ${ n }`);
+  return runningTotal + n;
+});
+console.log( sum );
+
+// .reduce() also works for objects.
+
+// .find() /////////////////////////////////////////////////////////////////////
+const firstMultipleOfFive = _(nums).find(function (candidate) {
+  console.log('considering', candidate, 'result', candidate % 5 === 0);
+  return candidate % 5 === 0;
+});
+console.log( firstMultipleOfFive );
+
+// .find() also works for objects.
+
+// .filter() ///////////////////////////////////////////////////////////////////
+const divisibleByThree = function (n) {
+  console.log(`considering: ${ n }, result: ${ n % 3 === 0 }`)
+  return n % 3 === 0;
+};
+
+const firstMultipleOfThree = _(nums).find(divisibleByThree); // first
+console.log( firstMultipleOfThree ); // 3
+
+const allMultiplesOfThree = _(nums).filter(divisibleByThree); // all
+console.log( allMultiplesOfThree ); // 3, 6, 9
+
+// reject() ////////////////////////////////////////////////////////////////////
+const nonMultiplesOfThree = _(nums).reject(divisibleByThree); // all that return false
+console.log( nonMultiplesOfThree ); // 1, 2, 4, 5, 7, 8
+
+// .pluck() ////////////////////////////////////////////////////////////////////
+const bros = [
+  {name: 'Groucho', instrument: 'guitar', disposition: 'surly'},
+  {name: 'Harpo', instrument: 'harp', disposition: 'fool'},
+  {name: 'Chico', instrument: 'piano', disposition: 'sleazy'}
+];
+
+console.log( _(bros).pluck('instrument') );
+
+// .max() //////////////////////////////////////////////////////////////////////
+console.log( _(nums).max() );
+
+// .min() //////////////////////////////////////////////////////////////////////
+console.log( _(nums).min() );
+
+// .sortBy() ///////////////////////////////////////////////////////////////////
+console.log( _(bros).sortBy('name') );
+
+// .shuffle() and .sample() ////////////////////////////////////////////////////

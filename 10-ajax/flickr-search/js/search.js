@@ -1,11 +1,10 @@
 const state = {
   nextPage: 1,
-  lastPageReached: false,
-  requestInProgress: false
+  lastPageReached: false // flag
 };
 
 const searchFlickr = function (keywords) {
-  if (state.lastPageReached || state.requestInProgress) {
+  if (state.lastPageReached) {
     return; // exit
   }
 
@@ -19,14 +18,11 @@ const searchFlickr = function (keywords) {
     format: 'json',
     page: state.nextPage++
   }).done(showImages).done(function (info) {
-    state.requestInProgress = false;
     if (info.photos.pages <= info.photos.page) {
       state.lastPageReached = true;
     }
     console.log(info); // debugging
   });
-
-  state.requestInProgress = true;
 };
 
 const showImages = function (results) {
@@ -62,11 +58,13 @@ $(document).ready(function () {
 
   });
 
+  const searchFlickrDebounced = _.debounce( searchFlickr, 4000, true );
+
   $(window).on('scroll', function () {
     const scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
     if (scrollBottom <= 700) { // Experiment with this value.
       const term = $('#query').val();
-      searchFlickr(term);
+      searchFlickrDebounced(term);
     }
   });
 });

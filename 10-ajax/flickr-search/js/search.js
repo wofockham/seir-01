@@ -1,12 +1,11 @@
-// throttling -- too many requests
-
 const state = {
   nextPage: 1,
-  lastPageReached: false
+  lastPageReached: false,
+  requestInProgress: false
 };
 
 const searchFlickr = function (keywords) {
-  if (state.lastPageReached) {
+  if (state.lastPageReached || state.requestInProgress) {
     return; // exit
   }
 
@@ -20,11 +19,14 @@ const searchFlickr = function (keywords) {
     format: 'json',
     page: state.nextPage++
   }).done(showImages).done(function (info) {
+    state.requestInProgress = false;
     if (info.photos.pages <= info.photos.page) {
       state.lastPageReached = true;
     }
     console.log(info); // debugging
   });
+
+  state.requestInProgress = true;
 };
 
 const showImages = function (results) {

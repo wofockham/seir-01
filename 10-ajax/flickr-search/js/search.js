@@ -1,7 +1,7 @@
 // throttling -- too many requests
 
 const state = {
-  page: 1,
+  nextPage: 1,
   lastPageReached: false
 };
 
@@ -18,7 +18,7 @@ const searchFlickr = function (keywords) {
     api_key: '2f5ac274ecfac5a455f38745704ad084',
     text: keywords, // what we are actually searching for
     format: 'json',
-    page: state.page++
+    page: state.nextPage++
   }).done(showImages).done(function (info) {
     if (info.photos.pages <= info.photos.page) {
       state.lastPageReached = true;
@@ -54,7 +54,7 @@ $(document).ready(function () {
     event.preventDefault(); // disabled the form submission
     const term = $('#query').val();
     $('#images').empty();
-    state.page = 1;
+    state.nextPage = 1;
     state.lastPageReached = false;
     searchFlickr(term);
 

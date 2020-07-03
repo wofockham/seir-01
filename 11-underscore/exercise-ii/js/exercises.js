@@ -44,4 +44,10 @@ console.log( _(people).pluck('uid') );
 console.log( _(people).max('uid') );
 
 // - Return an object that says how many even numbers and how many odd numbers there are in ` numbers `
+const oddEvenCounts = _(numbers).countBy(function (n) {
+  return (n % 2 === 0) ? 'even' : 'odd';
+});
+console.log(oddEvenCounts);
+
 // - Get three random numbers out of ` numbers `
+console.log( _(numbers).sample(3) );

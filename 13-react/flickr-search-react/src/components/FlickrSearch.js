@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 
 class FlickrSearch extends Component {
+  constructor() {
+    super();
+    this.state = { images: [] };
+    this.fetchImages = this.fetchImages.bind(this);
+  }
+
   fetchImages(q) {
+    const generateURL = function (p) {
+      return [
+        'http://farm',
+        p.farm,
+        '.static.flickr.com/',
+        p.server,
+        '/',
+        p.id,
+        '_',
+        p.secret,
+        '_q.jpg' // Change 'q' to something else for different sizes (see docs)
+      ].join('');
+    };
+
     console.log('searching flickr for', q);
     const flickrURL = 'https://api.flickr.com/services/rest/';
     const flickrParams = {
@@ -14,7 +35,8 @@ class FlickrSearch extends Component {
     };
 
     axios(flickrURL, { params: flickrParams } ).then((results) => {
-      console.log( results );
+      const images = _(results.data.photos.photo).map(generateURL);
+      this.setState({images: images});
     });
   }
 
@@ -22,8 +44,8 @@ class FlickrSearch extends Component {
     return (
       <div>
         <h1>Image Search</h1>
-        <SearchForm onSubmit={ this.fetchImages } title="flickr search" help="call aleks for help" />
-        <Gallery />
+        <SearchForm onSubmit={ this.fetchImages } />
+        <Gallery images={ this.state.images } />
       </div>
     );
   }
@@ -61,9 +83,11 @@ class SearchForm extends Component {
 // functional components: for when you don't need state.
 // Think of it as just the render() method.
 // No `this`.
-const Gallery = () => {
+const Gallery = (props) => {
   return (
-    <h2>Gallery coming soon</h2>
+    <div>
+      { props.images.map( (url) => <img src={ url } alt="Copyright Flickr" key={ url } /> ) }
+    </div>
   );
 };
 

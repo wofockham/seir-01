@@ -22,5 +22,26 @@ end
 # memoisation
 # faster recursion: iterative recursion
 
+def fib_memo(n)
+  @fib ||= {} # @fib = @fib || {} # create the @fib hash unless it already exists
+  if @fib[n]
+    @fib[n]
+  elsif n === 1 || n == 2
+    1
+  else
+    result = fib_memo(n-1) + fib_memo(n-2)
+    @fib[n] = result # memoisation
+    result
+  end
+end
+
+def fib(n, a=1, b=1)
+  if n == 1 || n == 2
+    b
+  else
+    fib(n-1, b, a+b) # mystical
+  end
+end
+
 require 'pry'
 binding.pry

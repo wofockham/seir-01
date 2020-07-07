@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+const SERVER_URL = 'http://localhost:3000/secrets.json'; // Update this once deployed.
 
 class Secrets extends Component {
   constructor() {
     super();
     this.state = {
-      // seed data: TODO fetch this via AJAX
-      secrets: [
-        {id: 1, content: 'Secret one'},
-        {id: 2, content: 'Secret two'},
-        {id: 3, content: 'Secret three'},
-        {id: 4, content: 'Secret four'}
-      ]
+      secrets: []
     };
+
+    const fetchSecrets = () => {
+      axios.get(SERVER_URL).then((results) => {
+        this.setState({secrets: results.data});
+        setTimeout(fetchSecrets, 6000); // recursion
+      });
+    };
+
+    fetchSecrets();
+
     this.saveSecret = this.saveSecret.bind(this);
   }
 
   saveSecret(content) {
-    // create a new secret object with this content
-    const secret = {
-      id: Math.random(), // This will disappear when the server assigns actual IDs
-      content: content
-    };
-
-    this.setState({secrets: [...this.state.secrets, secret]}); // no mutation!
+    axios.post(SERVER_URL, {content: content}).then((result) => {
+      // Add the new secret to the collection of secrets in state.
+      this.setState({secrets: [...this.state.secrets, result.data]});
+    });
   }
 
   render() {
@@ -53,7 +57,6 @@ class SecretForm extends Component {
     event.preventDefault();
     this.props.onSubmit(this.state.content);
     this.setState({content: ''});
-    // to restore focus: use refs
   }
 
   render() {

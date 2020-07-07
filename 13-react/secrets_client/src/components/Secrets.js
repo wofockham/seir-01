@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 const SERVER_URL = 'http://localhost:3000/secrets.json'; // Update this once deployed.
+// const SERVER_URL = 'http://594f7a97c9bc.ngrok.io/secrets.json';
 
 class Secrets extends Component {
   constructor() {

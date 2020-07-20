@@ -7,7 +7,7 @@ import Tasks from '../api/tasks'; // Model
 
 const App = () => {
   // hook
-  const tasks = useTracker(() => Tasks.find({}).fetch()); // Extremely magic
+  const tasks = useTracker(() => Tasks.find({}, { sort: {createdAt: -1} }).fetch()); // Extremely magic
 
   return (<div>
     <h1>Wow Todo List</h1>
@@ -28,7 +28,9 @@ class TaskForm extends Component {
     Tasks.insert({
       text: text,
       createdAt: new Date() // current time
-    })
+    });
+
+    ReactDOM.findDOMNode(this.refs.textInput).value = ''; // Reset
   }
 
   render() {

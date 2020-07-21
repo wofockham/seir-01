@@ -53,4 +53,13 @@ server.get(/[0-9]+/, (req, res) => {
   res.send('There is a number in your URL');
 });
 
+server.get('/ask', (req, res) => {
+  res.render('ask.ejs');
+});
+
+// Form params are in req.query, not req.params.
+server.get('/answer', (req, res) => {
+  res.render('answer.ejs', {question: req.query.question, answer: "No comment"}); // TODO: AI to find an actual answer.
+});
+
 server.listen(PORT, () => console.log(`Now serving on http://localhost:${ PORT }/`));

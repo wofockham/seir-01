@@ -7,3 +7,11 @@ exports.list_all_words = (req, res) => {
     res.json(words);
   });
 };
+
+exports.create_a_word = (req, res) => {
+  const newWord = new Vocab(req.body); // req.body => { english: 'eraser', german: 'gummi' }
+  newWord.save((err, word) => {
+    if (err) res.send(err);
+    res.json(word);
+  });
+};

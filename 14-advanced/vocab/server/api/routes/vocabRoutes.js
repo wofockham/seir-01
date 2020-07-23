@@ -4,5 +4,6 @@ const vocabBuilder = require('../controllers/vocabController');
 module.exports = (app) => {
   app
     .route('/words')
-    .get(vocabBuilder.list_all_words)
+    .get(vocabBuilder.list_all_words) // index
+    .post(vocabBuilder.create_a_word) // create
 }

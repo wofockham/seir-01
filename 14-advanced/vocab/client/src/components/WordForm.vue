@@ -36,8 +36,11 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      console.log(`English: ${this.word.english}`);
-      console.log(`German: ${this.word.german}`);
+      if (this.word.english === '' || this.word.german === '') {
+        this.errorsPresent = true;
+      } else {
+        this.$emit('createOrUpdate', this.word);
+      }
     }
   }
 }

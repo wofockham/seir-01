@@ -17,6 +17,7 @@
     </div>
 
     <div class="ui text container">
+      <flash-message clss="myFlash"></flash-message>
       <div class="ui one column grid">
         <div class="column">
           <router-view /><!-- yield -->

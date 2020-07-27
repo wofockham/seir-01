@@ -20,7 +20,9 @@
           <td width="75" class="center aligned">
             <router-link :to="{ name: 'edit', params: { id: word._id }}">Edit</router-link>
           </td>
-          <td width="75" class="center aligned">Destroy</td>
+          <td width="75" class="center aligned" @click.prevent="onDestroy(word._id)">
+            <a :href="`/words/${word._id}`">Destroy</a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -35,6 +37,16 @@ export default {
   data() {
     return {
       words: []
+    }
+  },
+  methods: {
+    async onDestroy(id) {
+      const sure = window.confirm('Are you sure?');
+      if (sure === false) return; // do nothing
+
+      await api.deleteWord(id);
+      this.flash('Word deleted successfully', 'success');
+      this.words = this.words.filter(word => word._id !== id);
     }
   },
   async mounted() {

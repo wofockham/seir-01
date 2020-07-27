@@ -4,6 +4,7 @@ import App from './App.vue';
 import router from './router';
 
 import 'semantic-ui-css/semantic.css';
+require('vue-flash-message/dist/vue-flash-message.min.css');
 
 Vue.config.productionTip = false;
 

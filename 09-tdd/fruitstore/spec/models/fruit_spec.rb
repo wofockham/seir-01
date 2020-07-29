@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Fruit, type: :model do
+  it { should belong_to(:shelf).optional }
+
   describe "an apple" do
     before do
       @apple = Apple.create :name => 'Granny Smith'

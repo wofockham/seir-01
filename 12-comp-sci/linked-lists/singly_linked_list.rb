@@ -8,6 +8,7 @@ class SinglyLinkedList
     end
   end
 
+  include Enumerable # Mixin
   attr_accessor :head
 
   def initialize(value=nil)
@@ -50,14 +51,27 @@ class SinglyLinkedList
 
   # TODO: tricky
   def reverse # non-destructive
+    reversed_list = SinglyLinkedList.new
+    current_node = @head
+    while current_node
+      reversed_list.prepend(current_node.value)
+      current_node = current_node.next
+    end
+    reversed_list
   end
 
   # TODO: trickier
   def reverse! # destructive
+    @head = self.reverse.head
   end
 
   # TODO: trickiest -- how do you accept/invoke a block? (do/end)
   def each
+    current_node = @head
+    while current_node
+      yield(current_node.value) if block_given?
+      current_node = current_node.next
+    end
   end
 
   # Bonus: .map, .reduce, .select, .reject

@@ -1,4 +1,7 @@
 module.exports = {
+  siteMetadata: {
+    title: 'Dull Site About Dull Things'
+  },
   plugins: [
     'gatsby-plugin-emotion',
     {
